@@ -3,509 +3,69 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Issam FATHI — Portfolio BTS SIO SISR</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg:       #06080f;
-      --s1:       #0c1018;
-      --s2:       #111828;
-      --card:     #131b2a;
-      --border:   rgba(255,255,255,.07);
-      --border2:  rgba(0,200,255,.2);
-      --cyan:     #00c8ff;
-      --cyan2:    #00eaff;
-      --violet:   #8b5cf6;
-      --green:    #10f0a0;
-      --orange:   #ff7b39;
-      --text:     #e2eaf8;
-      --muted:    #5a6a8a;
-      --muted2:   #8a9ab8;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      overflow-x: hidden;
-      line-height: 1.65;
-    }
-
-    /* ── GRID BACKGROUND ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0,200,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,200,255,.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    /* ── CURSOR GLOW ── */
-    .cursor-glow {
-      position: fixed; width: 400px; height: 400px;
-      border-radius: 50%; pointer-events: none; z-index: 1;
-      background: radial-gradient(circle, rgba(0,200,255,.06) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      transition: left .15s ease, top .15s ease;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 5rem;
-      background: rgba(6,8,15,.8);
-      backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
-    .nav-logo span { color: var(--cyan); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: .8rem; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase;
-      transition: color .2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1px; background: var(--cyan);
-      transition: width .3s;
-    }
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-links a:hover::after { width: 100%; }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 8rem 5rem 5rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg-text {
-      position: absolute; right: -2rem; top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Syne', sans-serif;
-      font-weight: 900; font-size: clamp(10rem, 20vw, 22rem);
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(0,200,255,.06);
-      letter-spacing: -.05em; line-height: 1;
-      pointer-events: none; user-select: none; z-index: 0;
-    }
-    .hero-left { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: .6rem;
-      font-size: .72rem; font-weight: 700; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--cyan);
-      margin-bottom: 1.5rem;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--cyan);
-    }
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3.5rem, 6vw, 6rem);
-      line-height: .95; letter-spacing: -.03em;
-      margin-bottom: 1.8rem;
-    }
-    h1 .name-last {
-      display: block;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-sub {
-      font-size: 1rem; color: var(--muted2); line-height: 1.8;
-      max-width: 420px; margin-bottom: 2.5rem; font-weight: 400;
-    }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .8rem 2rem; border-radius: 6px;
-      font-size: .82rem; font-weight: 700; letter-spacing: .06em;
-      text-transform: uppercase; cursor: pointer;
-      text-decoration: none; transition: all .25s; border: none;
-      font-family: 'Syne', sans-serif;
-    }
-    .btn-primary {
-      background: var(--cyan); color: #000;
-      box-shadow: 0 0 30px rgba(0,200,255,.25);
-    }
-    .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,200,255,.4); }
-    .btn-ghost {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border2);
-    }
-    .btn-ghost:hover { background: rgba(0,200,255,.05); border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
-
-    /* HERO RIGHT — carte identité */
-    .hero-right { position: relative; z-index: 2; }
-    .id-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.5rem;
-      position: relative; overflow: hidden;
-    }
-    .id-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
-    }
-    .id-card-header {
-      display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2rem;
-    }
-    .id-avatar {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: linear-gradient(135deg, rgba(0,200,255,.2), rgba(139,92,246,.2));
-      border: 2px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; flex-shrink: 0;
-    }
-    .id-name { font-weight: 800; font-size: 1.1rem; }
-    .id-role { font-size: .78rem; color: var(--cyan); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: .2rem; }
-    .id-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1rem; margin-bottom: 2rem;
-    }
-    .id-stat {
-      background: var(--s2); border-radius: 10px; padding: 1rem;
-      border: 1px solid var(--border);
-    }
-    .id-stat-val { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 500; color: var(--cyan); }
-    .id-stat-label { font-size: .72rem; color: var(--muted); margin-top: .2rem; text-transform: uppercase; letter-spacing: .06em; }
-    .id-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .id-tag {
-      background: rgba(0,200,255,.07); border: 1px solid rgba(0,200,255,.15);
-      color: var(--muted2); border-radius: 4px;
-      padding: .25rem .7rem; font-size: .74rem; font-weight: 500;
-    }
-
-    /* ── SECTION BASE ── */
-    section { padding: 7rem 5rem; position: relative; z-index: 2; }
-    .section-line {
-      width: 100%; height: 1px; background: var(--border);
-      margin-bottom: 7rem;
-    }
-    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; flex-wrap: wrap; gap: 1rem; }
-    .section-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .72rem; color: var(--cyan); letter-spacing: .15em;
-      margin-bottom: .6rem; display: block;
-    }
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900; font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -.02em; line-height: 1;
-    }
-    .section-desc { color: var(--muted2); max-width: 440px; font-size: .95rem; line-height: 1.8; }
-
-    /* ── À PROPOS ── */
-    .about-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; max-width: 1100px; }
-    .about-text { color: var(--muted2); line-height: 1.9; font-size: .98rem; }
-    .about-text strong { color: var(--text); font-weight: 700; }
-    .about-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
-    .tag {
-      background: var(--card); border: 1px solid var(--border);
-      color: var(--muted2); border-radius: 6px;
-      padding: .35rem .85rem; font-size: .78rem; font-weight: 500;
-      transition: border-color .2s, color .2s;
-    }
-    .tag:hover { border-color: var(--cyan); color: var(--cyan); }
-    .about-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
-    .about-info-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.2rem 1.5rem;
-      display: flex; align-items: center; gap: 1rem;
-      transition: border-color .2s;
-    }
-    .about-info-item:hover { border-color: var(--border2); }
-    .about-info-icon { font-size: 1.3rem; flex-shrink: 0; }
-    .about-info-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-    .about-info-val { font-size: .9rem; font-weight: 600; margin-top: .1rem; }
-
-    /* ── COMPÉTENCES ── */
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem; max-width: 1100px;
-    }
-    .skill-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.8rem;
-      transition: all .3s; position: relative; overflow: hidden;
-    }
-    .skill-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .3s;
-    }
-    .skill-card:hover { border-color: var(--border2); transform: translateY(-6px); }
-    .skill-card:hover::before { transform: scaleX(1); }
-    .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .skill-title { font-weight: 800; font-size: .95rem; margin-bottom: 1rem; letter-spacing: .02em; }
-    .skill-items { display: flex; flex-direction: column; gap: .6rem; }
-    .skill-item {
-      display: flex; align-items: center; gap: .7rem;
-      font-size: .82rem; color: var(--muted2);
-    }
-    .skill-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--cyan); flex-shrink: 0;
-    }
-
-    /* ── TABLEAU COMPÉTENCES ── */
-    .synth-wrap { overflow-x: auto; max-width: 1100px; border-radius: 14px; border: 1px solid var(--border); }
-    .synth-table { width: 100%; border-collapse: collapse; }
-    .synth-table thead { background: var(--s2); }
-    .synth-table th {
-      padding: 1rem 1.3rem; text-align: left;
-      font-size: .72rem; font-weight: 700;
-      color: var(--cyan); letter-spacing: .12em;
-      text-transform: uppercase; border-bottom: 1px solid var(--border);
-    }
-    .synth-table td {
-      padding: .85rem 1.3rem; font-size: .85rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted2); vertical-align: middle;
-    }
-    .synth-table tbody tr:last-child td { border-bottom: none; }
-    .synth-table tbody tr:hover td { background: var(--s2); }
-    .synth-table td:first-child { font-weight: 600; color: var(--text); }
-    .check-cell { text-align: center; }
-    .check-box {
-      width: 20px; height: 20px; border-radius: 4px;
-      border: 2px solid rgba(255,255,255,.15); background: transparent;
-      cursor: pointer; appearance: none; -webkit-appearance: none;
-      position: relative; transition: all .2s; display: inline-block;
-      vertical-align: middle;
-    }
-    .check-box:checked { background: var(--cyan); border-color: var(--cyan); }
-    .check-box:checked::after {
-      content: '✓'; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      color: #000; font-size: .7rem; font-weight: 900;
-    }
-    .bloc-badge {
-      display: inline-block; padding: .18rem .55rem; border-radius: 4px;
-      font-size: .68rem; font-weight: 800;
-      font-family: 'JetBrains Mono', monospace;
-      background: rgba(139,92,246,.15); color: var(--violet);
-      border: 1px solid rgba(139,92,246,.3);
-    }
-
-    /* ── RÉALISATIONS ── */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; max-width: 1100px;
-    }
-    .project-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem;
-      display: flex; flex-direction: column; gap: 1.2rem;
-      transition: all .3s; position: relative; overflow: hidden;
-    }
-    .project-card:hover { border-color: var(--border2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-    .project-card.placeholder { opacity: .45; border-style: dashed; }
-    .project-card.placeholder:hover { transform: none; }
-    .project-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .68rem; color: var(--muted); letter-spacing: .1em;
-    }
-    .project-top { display: flex; justify-content: space-between; align-items: center; }
-    .project-cat {
-      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--cyan);
-    }
-    .project-status {
-      font-size: .68rem; padding: .22rem .6rem; border-radius: 100px; font-weight: 700;
-    }
-    .status-done { background: rgba(16,240,160,.1); color: var(--green); border: 1px solid rgba(16,240,160,.25); }
-    .status-wip  { background: rgba(255,123,57,.1); color: var(--orange); border: 1px solid rgba(255,123,57,.25); }
-    .status-soon { background: rgba(90,106,138,.1); color: var(--muted2); border: 1px solid var(--border); }
-    .project-title { font-weight: 800; font-size: 1rem; line-height: 1.3; }
-    .project-desc { font-size: .83rem; color: var(--muted2); line-height: 1.75; flex: 1; }
-    .project-link {
-      display: inline-flex; align-items: center; gap: .4rem;
-      font-size: .78rem; font-weight: 700; color: var(--cyan);
-      text-decoration: none; letter-spacing: .04em;
-      opacity: 0; transition: opacity .2s;
-    }
-    .project-card:hover .project-link { opacity: 1; }
-    .project-footer { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .ptag {
-      background: rgba(0,200,255,.06); border: 1px solid rgba(0,200,255,.12);
-      color: var(--cyan); border-radius: 4px;
-      padding: .2rem .6rem; font-size: .7rem; font-weight: 600;
-    }
-
-    /* ── VEILLE ── */
-    .veille-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 900px; }
-    .veille-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem;
-      transition: all .3s; position: relative; overflow: hidden;
-    }
-    .veille-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
-      transform: scaleX(0); transform-origin: left; transition: transform .4s;
-    }
-    .veille-card:hover { border-color: var(--border2); transform: translateY(-4px); }
-    .veille-card:hover::after { transform: scaleX(1); }
-    .veille-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .veille-date { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--muted); letter-spacing: .1em; margin-bottom: .6rem; }
-    .veille-title { font-weight: 800; font-size: 1rem; margin-bottom: .8rem; }
-    .veille-desc { font-size: .83rem; color: var(--muted2); line-height: 1.75; }
-
-    /* ── CV ── */
-    .cv-layout { display: flex; flex-direction: column; gap: 1.2rem; max-width: 750px; }
-    .cv-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.8rem 2rem;
-      display: flex; align-items: center; gap: 1.5rem;
-      position: relative; overflow: hidden;
-      transition: border-color .3s;
-    }
-    .cv-card:hover { border-color: var(--border2); }
-    .cv-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet));
-    }
-    .cv-icon-wrap {
-      width: 56px; height: 56px; border-radius: 12px;
-      background: rgba(0,200,255,.1); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; flex-shrink: 0;
-    }
-    .cv-info { flex: 1; }
-    .cv-info strong { font-weight: 800; font-size: 1rem; display: block; margin-bottom: .3rem; }
-    .cv-info span { font-size: .82rem; color: var(--muted2); }
-
-    /* ── CONTACT ── */
-    .contact-grid { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; }
-    .contact-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.2rem 1.5rem;
-      display: flex; align-items: center; gap: 1.2rem;
-      transition: all .25s; text-decoration: none; color: var(--text);
-    }
-    .contact-item:hover { border-color: var(--border2); transform: translateX(6px); }
-    .contact-icon {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(0,200,255,.08); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .contact-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-    .contact-val { font-size: .9rem; font-weight: 600; margin-top: .15rem; }
-    .contact-arrow { margin-left: auto; color: var(--muted); font-size: 1rem; transition: color .2s; }
-    .contact-item:hover .contact-arrow { color: var(--cyan); }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 3rem 5rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted); font-size: .78rem; letter-spacing: .05em;
-    }
-    footer strong { color: var(--cyan); }
-
-    /* ── ANIMATIONS ── */
-    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
-    .fade-up.visible { opacity: 1; transform: none; }
-    .fade-up:nth-child(2) { transition-delay: .1s; }
-    .fade-up:nth-child(3) { transition-delay: .2s; }
-    .fade-up:nth-child(4) { transition-delay: .3s; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-      .hero-bg-text { display: none; }
-      .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .veille-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <title>E-Portfolio - Issam FATHI</title>
+  <link rel="stylesheet" href="index.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
 <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- ══ NAV ══ -->
+
+<!-- Menu de navigation -->
 <nav>
-  <a href="#hero" style="text-decoration:none;"><div class="nav-logo">IF <span>·</span> Portfolio</div></a>
+  <a href="#hero" style="text-decoration:none;"><div class="nav-logo">IF<span>·</span>Portfolio</div></a>
   <ul class="nav-links">
     <li><a href="#about">À propos</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#blocs">Blocs BTS</a></li>
-    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#xp">Expériences professionnelles</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#synthèse">Synthèse</a></li>
     <li><a href="#veille">Veille</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- ══ HERO ══ -->
+
+<!-- Page d'accueil -->
 <section id="hero">
-
-
   <div class="hero-left">
-    <div class="hero-eyebrow">BTS SIO · Promotion 2026</div>
+    <div class="hero-eyebrow">BTS SIO · SISR</div>
     <h1>
       Issam
       <span class="name-last">FATHI</span>
     </h1>
-    <p class="hero-sub">Étudiant en BTS SIO à Toulouse, orienté Systèmes et Réseaux. Bienvenue sur mon portfolio.</p>
+    <p class="hero-sub">Bienvenue sur mon portfolio.</p>
     <div class="hero-actions">
-      <a href="#realisations" class="btn btn-primary">Voir mes réalisations →</a>
-      <a href="#cv" class="btn btn-ghost">Voir mes CV</a>
+      <a href="#about" class="btn btn-primary">En apprendre plus sur moi →</a>
+      <a href="#cv" class="btn btn-ghost">Voir mon CV</a>
     </div>
   </div>
-
-
 </section>
 
-<!-- ══ À PROPOS ══ -->
+
+<!-- Section "à propos" -->
 <section id="about">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 01</span>
+      <span class="section-num">// Mon parcours et mes motivations.</span>
       <h2>À propos</h2>
     </div>
-    <p class="section-desc">Mon parcours, ma formation et ce qui me motive dans l'informatique.</p>
   </div>
-
   <div class="about-layout">
     <div class="fade-up">
       <p class="about-text">
-        Je m'appelle <strong>Issam FATHI</strong>, j'ai 20 ans et je suis en <strong>BTS SIO option SISR</strong> à l'Institut Limayrac de Toulouse.<br><br>
-        Avant ça j'avais un Bac STMG — pas un parcours classique pour l'informatique, mais c'est justement ce virage qui m'a donné envie de me dépasser. Les réseaux et les systèmes, ça m'accroche vraiment : comprendre comment une infrastructure tient debout, configurer, dépanner, ça a du sens pour moi.<br><br>
-        Ce qui me caractérise aussi, c'est mon aisance à l'oral. Présenter un projet, expliquer une démarche, je suis à l'aise avec ça — et c'est un atout que je compte bien valoriser dans ma future carrière.
+        Je m'appelle <strong>Issam FATHI</strong>, j'ai 20 ans et je suis en deuxième année de BTS Services informatiques aux Organisations option Solutions d'Infrastructures Systèmes et Réseaux au sein de l'Institut Limayrac à <strong>Toulouse</strong><br><br>
+        Avant ça j'avais un Bac STMG, pas un parcours classique pour l'informatique, mais c'est justement ce virage qui m'a donné envie de me dépasser. La partie système et réseaux, ça m'accroche vraiment : comprendre comment une infrastructure tient debout, configurer, dépanner, ça a du sens pour moi.<br><br>
+        Ce qui me caractérise aussi, c'est mon aisance à l'oral. Présenter un projet, expliquer une démarche, je suis à l'aise avec ça, et c'est un atout que je compte bien valoriser dans ma future carrière.
       </p>
-      <div class="about-tags">
-        <span class="tag">🎓 BTS SIO SISR</span>
-        <span class="tag">🏫 Institut Limayrac</span>
-        <span class="tag">📍 Toulouse</span>
-        <span class="tag">🗣️ Aisance à l'oral</span>
-        <span class="tag">🌐 Réseaux & Systèmes</span>
-        <span class="tag">🇫🇷🇩🇿 Franco-Algérien</span>
-      </div>
     </div>
     <div class="about-sidebar fade-up">
       <div class="about-info-item">
         <div class="about-info-icon">🎓</div>
         <div>
           <div class="about-info-label">Formation</div>
-          <div class="about-info-val">BTS SIO option SISR</div>
+          <div class="about-info-val">BTS SIO option SISR (2nd année)</div>
         </div>
       </div>
       <div class="about-info-item">
@@ -516,88 +76,252 @@
         </div>
       </div>
       <div class="about-info-item">
-        <div class="about-info-icon">🎒</div>
+        <div class="about-info-icon">🌐</div>
         <div>
-          <div class="about-info-label">Diplôme précédent</div>
-          <div class="about-info-val">Bac STMG — Mention AB</div>
+          <div class="about-info-label">Spécialisation</div>
+          <div class="about-info-val">Infrastructures Systèmes et Réseaux</div>
         </div>
       </div>
       <div class="about-info-item">
-        <div class="about-info-icon">🏥</div>
+        <div class="about-info-icon">🏢</div>
         <div>
           <div class="about-info-label">Stage 1ère année</div>
-          <div class="about-info-val">Pharmaguest · En cours</div>
+          <div class="about-info-val">Pharmagest (Equasens)</div>
+        </div>
+      </div>
+      <div class="about-info-item">
+        <div class="about-info-icon">🏢</div>
+        <div>
+          <div class="about-info-label">Stage 2ème année</div>
+          <div class="about-info-val">À venir</div>
         </div>
       </div>
       <div class="about-info-item">
         <div class="about-info-icon">🚗</div>
         <div>
           <div class="about-info-label">Permis</div>
-          <div class="about-info-val">AM / B1 / B</div>
+          <div class="about-info-val">AM/B1/B</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ COMPÉTENCES ══ -->
-<section id="competences">
+
+<!-- Section "Expériences pro" -->
+<section id="xp">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 02</span>
-      <h2>Compétences</h2>
+      <span class="section-num">// Mon parcours professionel dans informatique.</span>
+      <h2>Expériences professionnelles</h2>
     </div>
-    <p class="section-desc">Les technologies et outils abordés au cours de ma formation BTS SIO.</p>
   </div>
 
-  <div class="skills-grid">
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-title">Réseaux</div>
-      <div class="skill-items">
-        <span class="skill-item"><span class="skill-dot"></span>Modèle OSI / TCP-IP</span>
-        <span class="skill-item"><span class="skill-dot"></span>Adressage IPv4 & masques</span>
-        <span class="skill-item"><span class="skill-dot"></span>VLAN (notions)</span>
+  <div class="exp-timeline fade-up">
+
+    <div class="exp-card">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Stage en entreprise</div>
+            <div class="exp-company">Pharmagest · Saint-Jean</div>
+          </div>
+          <div class="exp-date">Mai – Juin 2026</div>
+        </div>
+        <p class="exp-desc">Stage de 1ère année de BTS chez Pharmagest (filiale d'Equasens).<br>
+        Cette première expérience très enrichisseante m'a permit de consolider de précieuse compétences déjà vu en cours et de les mettre en pratique.<br>
+      J'ai également pu me conforter à l'idée de mon choix de carrière dans l'informatique.</p>
+        <span class="exp-tag">6 semaines</span>
       </div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🖥️</div>
-      <div class="skill-title">Systèmes</div>
-      <div class="skill-items">
-        <span class="skill-item"><span class="skill-dot"></span>Windows Server (notions)</span>
-        <span class="skill-item"><span class="skill-dot"></span>Linux Ubuntu (bases)</span>
-        <span class="skill-item"><span class="skill-dot"></span>Virtualisation (VirtualBox)</span>
-      </div>
-    </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">💻</div>
-      <div class="skill-title">Développement</div>
-      <div class="skill-items">
-        <span class="skill-item"><span class="skill-dot"></span>HTML / CSS (bases)</span>
-        <span class="skill-item"><span class="skill-dot"></span>Python (bases)</span>
-        <span class="skill-item"><span class="skill-dot"></span>Pseudo-code</span>
-      </div>
-    </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-title">Bases de données</div>
-      <div class="skill-items">
-        <span class="skill-item"><span class="skill-dot"></span>SQL (bases)</span>
-        <span class="skill-item"><span class="skill-dot"></span>Requêtes SELECT / INSERT</span>
-        <span class="skill-item"><span class="skill-dot"></span>Modélisation (notions MCD)</span>
-      </div>
-    </div>
+      
   </div>
 </section>
 
-<!-- ══ TABLEAU SYNTHÈSE ══ -->
-<section id="blocs">
+
+<!-- Section "Compétences" -->
+<!-- Section "Compétences" -->
+<section id="competences">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 03</span>
+      <span class="section-num">// Référentiel BTS SIO SISR — dépliez chaque bloc.</span>
+      <h2>Compétences</h2>
+    </div>
+  </div>
+
+  <div class="accordion fade-up">
+
+    <!-- B1 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B1</span>
+        <span class="acc-title">Gérer le patrimoine informatique</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Recensement et suivi du parc matériel et logiciel. En stage chez Pharmagest, j'ai participé à l'inventaire et à la configuration de nombreux équipements : postes fixes, laptops, serveurs, TPE, lecteurs et périphériques divers.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">🎫</span>
+            <span class="preuve-label">TP GLPI — gestion de parc et tickets d'incidents</span>
+            <span class="preuve-placeholder">Captures à ajouter</span>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">🏢</span>
+            <span class="preuve-label">Stage Pharmagest — inventaire et suivi du parc</span>
+            <span class="preuve-placeholder">Capture à ajouter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B2</span>
+        <span class="acc-title">Collecter, suivre et orienter des demandes</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Prise en charge des incidents utilisateurs et orientation vers les bons interlocuteurs. En stage chez Pharmagest, j'ai pu observer et assister les techniciens lors de sessions de support à distance via AnyDesk, où ils prenaient la main sur les postes clients pour résoudre les incidents. J'ai également utilisé GLPI en cours pour simuler la gestion de tickets helpdesk.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">🖥️</span>
+            <span class="preuve-label">Stage Pharmagest — support à distance via AnyDesk (Outline)</span>
+            <span class="preuve-placeholder">Capture à ajouter</span>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">🎫</span>
+            <span class="preuve-label">TP GLPI — création et suivi de tickets d'incidents</span>
+            <span class="preuve-placeholder">Capture à ajouter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B3 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B3</span>
+        <span class="acc-title">Développer la présence en ligne de l'organisation</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Dans le cadre d'un projet d'AP, j'ai participé au développement d'un site web pour la Maison des Ligues de Lorraine. Le site rassemble les différentes ligues sportives, leurs activités et informations pratiques. Je me suis principalement occupé de la rubrique "Escrime" en développant une interface en HTML en respectant le thème global du site. J'ai également développé ce portfolio hébergé sur GitHub Pages.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">🌐</span>
+            <span class="preuve-label">Site Maison des Ligues de Lorraine — rubrique Escrime</span>
+            <a href="#" class="preuve-link">Voir le site →</a>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">🌐</span>
+            <span class="preuve-label">E-Portfolio BTS SIO — développé en HTML/CSS</span>
+            <a href="https://issamfathi-sio.github.io/issamfathi-sio.github.io" target="_blank" class="preuve-link">Voir →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B4 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B4</span>
+        <span class="acc-title">Travailler en mode projet</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Dans le cadre du projet AP Maison des Ligues de Lorraine, nous avons travaillé en équipe en respectant un cahier des charges défini. Le projet a impliqué une phase d'analyse des besoins, une répartition des tâches entre les membres, et la livraison d'un site fonctionnel conforme aux attentes.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">📋</span>
+            <span class="preuve-label">Cahier des charges — projet Maison des Ligues</span>
+            <span class="preuve-placeholder">Document à ajouter</span>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">🌐</span>
+            <span class="preuve-label">Livrable — site web Maison des Ligues de Lorraine</span>
+            <a href="#" class="preuve-link">Voir le site →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B5 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B5</span>
+        <span class="acc-title">Mettre à disposition des utilisateurs un service informatique</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Durant mon stage chez Pharmagest, j'ai installé et configuré de nombreux équipements destinés aux utilisateurs finaux : postes fixes, ordinateurs portables, serveurs, TPE, lecteurs et divers périphériques. Chaque déploiement impliquait une configuration adaptée à l'environnement du client et une vérification du bon fonctionnement avant remise en service.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">🏢</span>
+            <span class="preuve-label">Stage Pharmagest — déploiement et configuration d'équipements</span>
+            <span class="preuve-placeholder">Captures à ajouter</span>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">📄</span>
+            <span class="preuve-label">Rapport de stage — détail des missions</span>
+            <span class="preuve-placeholder">Document à ajouter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B6 -->
+    <div class="acc-item">
+      <button class="acc-trigger" onclick="toggleAcc(this)">
+        <span class="acc-bloc">B6</span>
+        <span class="acc-title">Organiser son développement professionnel</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p class="acc-desc">Je pratique TryHackMe pour progresser en cybersécurité de façon autonome. Je maintiens une veille active sur la cybersécurité des grandes structures (étatiques, multinationales). J'ai également participé à un CTF organisé par M. Puel en équipe avec des camarades, ce qui m'a permis de mettre en pratique des compétences en sécurité offensive et de travailler en équipe sous contrainte de temps.</p>
+        <div class="acc-preuves">
+          <div class="preuve-item">
+            <span class="preuve-icon">🔐</span>
+            <span class="preuve-label">TryHackMe — progression en cybersécurité</span>
+            <a href="https://tryhackme.com" target="_blank" class="preuve-link">Voir le profil →</a>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">🏁</span>
+            <span class="preuve-label">CTF M. Puel — challenge en équipe</span>
+            <span class="preuve-placeholder">Capture à ajouter</span>
+          </div>
+          <div class="preuve-item">
+            <span class="preuve-icon">📰</span>
+            <span class="preuve-label">Veille technologique — cybersécurité grandes structures</span>
+            <a href="#veille" class="preuve-link">Voir ma veille →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleAcc(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+
+
+<!-- Section "Synthèse" -->
+<section id="synthèse">
+  <div class="section-header fade-up">
+    <div>
+      <span class="section-num">// Synthèse des compétences validées au fil des cours, TPs et stages.</span>
       <h2>Tableau de synthèse</h2>
     </div>
-    <p class="section-desc">Référentiel BTS SIO SISR — compétences validées au fil des cours, TPs et stages.</p>
   </div>
 
   <div class="synth-wrap fade-up">
@@ -607,7 +331,7 @@
           <th>Compétence</th>
           <th>Bloc</th>
           <th style="text-align:center;">Cours</th>
-          <th style="text-align:center;">TP / AP</th>
+          <th style="text-align:center;">TP</th>
           <th style="text-align:center;">Stage</th>
           <th style="text-align:center;">Validé</th>
         </tr>
@@ -616,87 +340,47 @@
         <tr>
           <td>Gérer le patrimoine informatique</td>
           <td><span class="bloc-badge">B1</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Répondre aux incidents et demandes d'assistance</td>
-          <td><span class="bloc-badge">B1</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box"checked/></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
         </tr>
         <tr>
-          <td>Développer la présence en ligne</td>
-          <td><span class="bloc-badge">B1</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
+          <td>Collecter, suivre et orienter des demandes</td>
+          <td><span class="bloc-badge">B2</span></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+        </tr>
+        <tr>
+          <td>Développer la présence en ligne de l'organisation</td>
+          <td><span class="bloc-badge">B3</span></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box"checked/></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
         </tr>
         <tr>
           <td>Travailler en mode projet</td>
-          <td><span class="bloc-badge">B1</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
+          <td><span class="bloc-badge">B4</span></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Concevoir et maintenir une infrastructure réseau</td>
-          <td><span class="bloc-badge">B2</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Installer et configurer les équipements et logiciels</td>
-          <td><span class="bloc-badge">B2</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Assurer la supervision et la surveillance</td>
-          <td><span class="bloc-badge">B2</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
         </tr>
         <tr>
-          <td>Protéger les données de l'organisation</td>
-          <td><span class="bloc-badge">B3</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Assurer la cybersécurité d'une infrastructure</td>
-          <td><span class="bloc-badge">B3</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
-        </tr>
-        <tr>
-          <td>Algorithmique & programmation (Python)</td>
+          <td>Mettre à disposition des utilisateurs un service informatique</td>
           <td><span class="bloc-badge">B5</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
         </tr>
         <tr>
-          <td>Communication professionnelle en anglais</td>
+          <td>Organiser son développement professionnel</td>
           <td><span class="bloc-badge">B6</span></td>
-          <td class="check-cell"><input type="checkbox" class="check-box" checked /></td>
+          <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
           <td class="check-cell"><input type="checkbox" class="check-box" /></td>
@@ -706,167 +390,71 @@
   </div>
 </section>
 
-<!-- ══ RÉALISATIONS ══ -->
-<section id="realisations">
-  <div class="section-header fade-up">
-    <div>
-      <span class="section-num">// 04</span>
-      <h2>Réalisations</h2>
-    </div>
-    <p class="section-desc">TPs, projets et travaux réalisés au cours de ma formation BTS SIO SISR.</p>
-  </div>
 
-  <div class="projects-grid">
-    <div class="project-card fade-up">
-      <div class="project-top">
-        <span class="project-cat">Réseaux</span>
-        <span class="project-status status-done">✓ Réalisé</span>
-      </div>
-      <div class="project-title">TP — Adressage IPv4 et sous-réseaux</div>
-      <p class="project-desc">Découpage d'un plan d'adressage en sous-réseaux avec calcul des masques CIDR. Configuration des interfaces sur Cisco Packet Tracer.</p>
-      <div class="project-footer">
-        <span class="ptag">Packet Tracer</span>
-        <span class="ptag">IPv4</span>
-        <span class="ptag">CIDR</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up">
-      <div class="project-top">
-        <span class="project-cat">Systèmes</span>
-        <span class="project-status status-done">✓ Réalisé</span>
-      </div>
-      <div class="project-title">TP — Installation Linux Ubuntu en VM</div>
-      <p class="project-desc">Mise en place d'une machine virtuelle sous Ubuntu avec VirtualBox. Configuration réseau et prise en main des commandes terminal essentielles.</p>
-      <div class="project-footer">
-        <span class="ptag">VirtualBox</span>
-        <span class="ptag">Linux</span>
-        <span class="ptag">Terminal</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up">
-      <div class="project-top">
-        <span class="project-cat">Support</span>
-        <span class="project-status status-done">✓ Réalisé</span>
-      </div>
-      <div class="project-title">TP — GLPI Gestion de parc & helpdesk</div>
-      <p class="project-desc">Déploiement et configuration de GLPI pour la gestion du parc informatique. Création de tickets d'incidents et suivi des demandes d'assistance.</p>
-      <div class="project-footer">
-        <span class="ptag">GLPI</span>
-        <span class="ptag">Helpdesk</span>
-        <span class="ptag">ITIL</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up">
-      <div class="project-top">
-        <span class="project-cat">Développement</span>
-        <span class="project-status status-done">✓ Réalisé</span>
-      </div>
-      <div class="project-title">TP — Algorithmique Python</div>
-      <p class="project-desc">Exercices de base en Python : variables, conditions, boucles, fonctions. Préparation au CCF mathématiques et algorithmique.</p>
-      <div class="project-footer">
-        <span class="ptag">Python</span>
-        <span class="ptag">Pseudo-code</span>
-        <span class="ptag">Algorithmique</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up">
-      <div class="project-top">
-        <span class="project-cat">Web</span>
-        <span class="project-status status-done">✓ Validé</span>
-      </div>
-      <div class="project-title">E-Portfolio BTS SIO</div>
-      <p class="project-desc">Conception et développement de ce portfolio en HTML/CSS pur sans framework. Hébergé sur GitHub Pages et présenté à l'épreuve E5 du BTS.</p>
-      <div class="project-footer">
-        <span class="ptag">HTML</span>
-        <span class="ptag">CSS</span>
-        <span class="ptag">GitHub Pages</span>
-      </div>
-    </div>
-
-    <div class="project-card placeholder fade-up">
-      <div class="project-top">
-        <span class="project-cat">Stage</span>
-        <span class="project-status status-wip">⚙ En cours</span>
-      </div>
-      <div class="project-title">Stage — Pharmaguest</div>
-      <p class="project-desc">Stage de 1ère année chez Pharmaguest (18/05 → 26/06/2026). En cours — cette section sera complétée à l'issue du stage.</p>
-      <div class="project-footer">
-        <span class="ptag">À définir</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ VEILLE ══ -->
+<!-- Section "Veille" -->
 <section id="veille">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 05</span>
+      <span class="section-num">// Sujets que je suis activement dans l'informatique.</span>
       <h2>Veille technologique</h2>
     </div>
-    <p class="section-desc">Sujets que je suis activement dans le domaine des systèmes et réseaux.</p>
   </div>
 
   <div class="veille-grid">
     <div class="veille-card fade-up">
       <div class="veille-icon">🔐</div>
-      <div class="veille-date">// THÈME 2024–2025</div>
+      <div class="veille-date">// THÈME 2024–2026</div>
       <div class="veille-title">Cybersécurité & ransomwares</div>
-      <p class="veille-desc">Suivi des actualités liées aux attaques par ransomware, aux bonnes pratiques de sécurisation des systèmes d'information et aux nouvelles vulnérabilités découvertes dans les infrastructures réseaux.</p>
+      <p class="veille-desc">En 2025, plus de 500 000 victimes ont sollicité une assistance sur Cybermalveillance.gouv.fr, soit +20% par rapport à 2024. Le groupe Qilin a multiplié ses attaques en France par 8 en un an. En mars 2025, Atos Racks a été victime du gang VanHelsing. Je suis ces actualités pour comprendre les vecteurs d'attaque et leurs implications concrètes sur la sécurisation des infrastructures réseau.</p>
     </div>
     <div class="veille-card fade-up">
       <div class="veille-icon">🤖</div>
-      <div class="veille-date">// THÈME 2024–2025</div>
-      <div class="veille-title">Intelligence artificielle & montée en puissance</div>
-      <p class="veille-desc">Suivi de l'essor des modèles d'IA générative (LLMs, ChatGPT, Copilot), leur intégration croissante dans les outils professionnels et leurs implications concrètes pour les métiers de l'informatique.</p>
+      <div class="veille-date">// THÈME 2024–2026</div>
+      <div class="veille-title">Intelligence artificielle & métiers IT</div>
+      <p class="veille-desc">L'IA s'intègre directement dans les outils du quotidien : Copilot dans Windows et Office, GitHub Copilot pour le développement. Dans les infrastructures réseau, elle commence à automatiser la supervision et la détection d'anomalies. Je suis cette évolution pour anticiper son impact dans le futur sur les métiers liées aux systèmes et réseaux.</p>
     </div>
   </div>
 </section>
 
-<!-- ══ CV ══ -->
+<!-- Section "CV" -->
 <section id="cv">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 06</span>
+      <span class="section-num">// Mon parcours en un document.</span>
       <h2>Curriculum Vitae</h2>
     </div>
-    <p class="section-desc">Deux versions selon le contexte — choisissez celui qui vous correspond.</p>
   </div>
 
   <div class="cv-layout fade-up">
     <div class="cv-card">
-      <div class="cv-icon-wrap">💻</div>
+      <div class="cv-icon-wrap">📜</div>
       <div class="cv-info">
-        <strong>CV 2026 — Informatique</strong>
-        <span>Destiné aux recruteurs tech, stages et alternance.</span>
+        <strong>CV - Last Version</strong>
+        <span>Destiné aux recruteurs, stages et alternance.</span>
       </div>
-      <a href="https://raw.githubusercontent.com/issamfathi-sio/issamfathi-sio.github.io/main/CV_Issam_FATHI_informatique.pdf" target="_blank" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0;">⬇ Télécharger</a>
+      <a href="https://raw.githubusercontent.com/issamfathi-sio/issamfathi-sio.github.io/main/CV_Issam_FATHI_informatique.pdf" target="_blank" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0;">Télécharger ⬇</a>
     </div>
-    <div class="cv-card">
-      <div class="cv-icon-wrap">📄</div>
-      <div class="cv-info">
-        <strong>CV 2026 — Général</strong>
-        <span>CV polyvalent pour jobs étudiants et jobs d'été.</span>
-      </div>
-      <a href="https://raw.githubusercontent.com/issamfathi-sio/issamfathi-sio.github.io/main/CV_Issam_FATHI.pdf" target="_blank" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0;">⬇ Télécharger</a>
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
+<!-- Section "Contact" -->
 <section id="contact">
   <div class="section-header fade-up">
     <div>
-      <span class="section-num">// 07</span>
+      <span class="section-num">// N'hésitez pas à me contacter.</span>
       <h2>Contact</h2>
     </div>
-    <p class="section-desc">Recruteur, professeur ou partenaire — n'hésitez pas à me contacter.</p>
   </div>
 
-    <div class="contact-grid fade-up">
+  <div class="contact-grid fade-up">
+    <a href="https://www.linkedin.com/in/issam-fathi-94175a3a3/" target="_blank" class="contact-item">
+      <div class="contact-icon">💼</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val">Voir mon profil LinkedIn</div>
+      </div>
+      <span class="contact-arrow">→</span>
+    </a>
     <a href="mailto:issam.fathi@limayrac.fr" class="contact-item">
       <div class="contact-icon">✉️</div>
       <div>
@@ -875,19 +463,11 @@
       </div>
       <span class="contact-arrow">→</span>
     </a>
-    <a href="tel:0759745867" class="contact-item">
+    <a href="https://wa.me/33759745867" class="contact-item">
       <div class="contact-icon">📱</div>
       <div>
-        <div class="contact-label">Téléphone</div>
+        <div class="contact-label">WhatsApp</div>
         <div class="contact-val">07 59 74 58 67</div>
-      </div>
-      <span class="contact-arrow">→</span>
-    </a>
-    <a href="https://www.linkedin.com/in/issam-fathi-94175a3a3/" target="_blank" class="contact-item">
-      <div class="contact-icon">💼</div>
-      <div>
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-val">Voir mon profil LinkedIn</div>
       </div>
       <span class="contact-arrow">→</span>
     </a>
