@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EscrimePage</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Section Escrime</h1>
+
+        <h2>Liste des rubriques</h2>
+        <ul>
+            <li><a href="#historique">Historique du sport</a></li>
+            <li><a href="#regles">Règles du sport</a></li>
+            <li><a href="#entraineurs">Les entraîneurs</a></li>
+            <li><a href="#categories">Les catégories</a></li>
+            <li><a href="#lieu">Lieu d'entraînement</a></li>
+            <li><a href="#jours">Jours d'entraînements</a></li>
+            <li><a href="#calendrier">Calendrier des assauts</a></li>
+            <li><a href="#contact">Adresse de contact</a></li>
+        </ul><br>
+
+
+        <h2 id="historique">L'histoire de l'escrime :</h2>
+        <p>L’escrime trouve ses racines dans l’Antiquité, mais c’est surtout au Moyen Âge et à la Renaissance qu’elle
+            devient un véritable art du combat, codifié par les maîtres d’armes européens.
+            Au fil des siècles, les duels laissent place à une pratique sportive raffinée, où la précision, la stratégie
+            et la maîtrise du geste prennent le dessus sur la simple force brute.
+            Dans la région du Grand Est longtemps marquée par l’héritage de l’Alsace-Lorraine, l’escrime a toujours eu
+            une place particulière, portée par une tradition historique mêlant influences françaises et germaniques.
+            À Strasbourg, on a le sens du duel élégant : on préfère manier le fleuret ou l’épée plutôt que de s’engager
+            dans un combat à la choucroute (trop glissante) ou au bretzel (trop dur, dangereux pour les doigts).
+            Aujourd’hui encore, l’escrime continue d’incarner cet équilibre entre discipline martiale ancestrale et
+            finesse moderne, tout en gardant le charme culturel de notre belle région.</p><br>
+
+
+        <h2 id="regles">Les règles de l'escrime :</h2>
+
+        <p>L’escrime se pratique en France avec trois armes reconnues : le fleuret, l’épée et le sabre.
+            Chaque assaut oppose deux tireurs qui tentent de marquer des touches sur une surface valable définie selon
+            l’arme.
+            Au fleuret et au sabre, la règle de priorité détermine à qui revient le point en cas d’actions simultanées ;
+            à l’épée, le premier qui touche marque, sans priorité.
+            Les combats se déroulent sur une piste de 14 mètres et se jouent généralement en 5 touches (poule) ou 15
+            touches (tableau d’élimination directe).
+            La sécurité est primordiale : masque, veste, sous-cuissardes et armes contrôlées sont obligatoires.
+            L’escrime combine ainsi précision, respect des règles et sens tactique.</p><br>
+
+
+        <h2 id="entraineurs">Nos entraineurs :</h2>
+        <ul class="services-list">
+            <li>Maître d’armes diplômée d’État – Mme Chantal MEDA (spécialité fleuret)</li>
+            <li>Entraîneur principal – M. Frédéric ROMAN (épée compétitive)</li>
+            <li>Professeur d’escrime – M. Jean-François RAMIARA (initiation et jeunes catégories)</li>
+            <li>Assistant maître d’armes – M. Christophe PUEL (préparation technique)</li>
+        </ul><br>
+
+
+        <h2 id="categories">Les catégories en escrime :</h2>
+        <h3>Loisir / Initiation</h3>
+        <ul class="services-list">
+            <li>Baby-escrime (5–6 ans)</li>
+            <li>Loisir jeunes (7-18 ans)</li>
+            <li>Loisir seniors (18 ans et plus)</li>
+        </ul>
+
+        <h3>Compétition</h3>
+        <ul class="services-list">
+            <li>Poussins (7–9 ans)</li>
+            <li>Benjamins (10–11 ans)</li>
+            <li>Minimes (12–13 ans)</li>
+            <li>Cadets (14–15 ans)</li>
+            <li>Juniors (16–17 ans)</li>
+            <li>Seniors (18 ans et plus)</li>
+        </ul><br>
+
+
+        <h2 id="lieu">Adresse du gymnase :</h2>
+        <p>Salle d’Armes des 2 Rives<br>
+            Gymnase Aristide Briand : 43 Avenue du Rhin, 67100 Strasbourg</p>
+
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/d/embed?mid=19VkA8J9VA2r3qfEHwuPRSZg5SXZwJiQ&ehbc=2E312F&noprof=1"
+                width="640" height="480">
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+
+        <h2 id="jours">Horaires d'entrainement :</h2>
+        <ul class="services-list">
+            <li>Lundi : 18h00 – 20h00</li>
+            <li>Mercredi : 17h00 – 19h00</li>
+            <li>Vendredi : 18h30 – 20h30</li>
+        </ul><br>
+
+
+        <h2 id="calendrier">Calendirer des prochains assauts :</h2>
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Compétition</th>
+                <th>Lieu</th>
+                <th>Catégorie</th>
+            </tr>
+            <tr>
+                <td>23/12/2025</td>
+                <td>Tournoi de Noël</td>
+                <td>Gymnase Aristide Briand</td>
+                <td>Poussins / Benjamins</td>
+            </tr>
+            <tr>
+                <td>11/01/2025</td>
+                <td>Interclub amical</td>
+                <td>Gymnase Meda Chantal</td>
+                <td>Minimes / Cadets / Juniors</td>
+            </tr>
+            <tr>
+                <td>15/02/2025</td>
+                <td>Compétition régionale</td>
+                <td>Gymnase de Colmar</td>
+                <td>Seniors</td>
+            </tr>
+        </table><br>
+
+
+        <h2 id="contact">Coordonées de contact :</h2>
+        <p>Pour toute informtion Mme Rodriguez est disponible de 08h00 à 23h00 tous les jours dans son bureau au RDC du
+            gymnase.</p>
+        <p>Email : <a href="mailto:escrime@ligue-sportive.fr">contact@escrime-strasbourg.fr</a></p>
+        <p>Numéro de téléphone : 06 84 31 12 64</p><br>
+
+
+        <p><a href="escrimePage.html">Retour à la liste des rubriques</a></p><br>
+
+
+        <footer>
+            <p>© 2025 Maison de la Ligue Section Escrime - Tous droits réservés</p>
+        </footer>
+    </div>
+    <div class="menu-droite">
+        <details>
+            <summary>☰ Menu</summary>
+            <nav>
+                <a href="mainpage.html">Accueil</a>
+                <a href="escrimePage.html">Escrime</a>
+                <a href="volleypage.html">Volley</a>
+                <a href="badmintonPage.html">Badminton</a>
+            </nav>
+        </details>
+    </div>
+</body>
+
+</html>
